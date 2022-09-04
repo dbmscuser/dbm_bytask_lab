@@ -8,7 +8,7 @@ def dbmJenkinsNode = "Built-In Node"
 try{
 
   stage("Init"){
-    node("Built-In Node"){
+    
       checkout scm
       //rootDir = pwd()
       myvars = load varsPath
@@ -23,7 +23,7 @@ try{
         feedbackToJira = true
       }
       packageFolder = issueKey
-    }
+    
   }
 
   stage("Packaging") {
