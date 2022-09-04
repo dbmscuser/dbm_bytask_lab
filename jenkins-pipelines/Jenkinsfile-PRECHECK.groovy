@@ -12,7 +12,7 @@ try{
       checkout scm
       //rootDir = pwd()
       myvars = load varsPath
-      //if ticket number comes from a Jenkins parameter
+      //if ticket number comes from a Jenkins parameter9
       if(env.TICKET){
         issueKey = env.TICKET
         feedbackToJira = false
