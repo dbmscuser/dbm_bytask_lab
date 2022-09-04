@@ -8,7 +8,7 @@ def dbmJenkinsNode = "built-in node"
 try{
 
   stage("Init"){
-    node(dbmJenkinsNode){
+    node("Built-In Node"){
       checkout scm
       //rootDir = pwd()
       myvars = load varsPath
