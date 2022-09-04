@@ -2,7 +2,7 @@
 
 /**********   LOCAL VARIABLES BEGIN   **********/
 def varsPath = "jenkins-pipelines/vars.groovy"
-def dbmJenkinsNode = "built-in node"
+def dbmJenkinsNode = "Built-In Node"
 /**********    LOCAL VARIABLES END    **********/
 
 try{
