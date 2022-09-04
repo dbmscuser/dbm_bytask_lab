@@ -2,13 +2,13 @@
 
 /**********   LOCAL VARIABLES BEGIN   **********/
 def varsPath = "jenkins-pipelines/vars.groovy"
-def dbmJenkinsNode = "Built-In Node"
+def dbmJenkinsNode = "master"
 /**********    LOCAL VARIABLES END    **********/
 
 try{
 
   stage("Init"){
-    
+    node (dbmJenkinsNode) {
       checkout scm
       //rootDir = pwd()
       myvars = load varsPath
@@ -23,7 +23,7 @@ try{
         feedbackToJira = true
       }
       packageFolder = issueKey
-    
+    }
   }
 
   stage("Packaging") {
