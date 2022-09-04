@@ -2,7 +2,7 @@
 
 /**********   LOCAL VARIABLES BEGIN   **********/
 def varsPath = "jenkins-pipelines/vars.groovy"
-def dbmJenkinsNode = "master"
+def dbmJenkinsNode = "${env.NODE_NAME}"
 /**********    LOCAL VARIABLES END    **********/
 
 try{
@@ -10,6 +10,7 @@ try{
   stage("Init"){
     node (dbmJenkinsNode) {
       checkout scm
+      echo "NODE_NAME = ${env.NODE_NAME}"
       //rootDir = pwd()
       myvars = load varsPath
       //if ticket number comes from a Jenkins parameter9
