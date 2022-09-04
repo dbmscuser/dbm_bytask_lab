@@ -6,7 +6,13 @@ def dbmJenkinsNode = "${env.NODE_NAME}"
 /**********    LOCAL VARIABLES END    **********/
 
 try{
-
+  stage('Hello') {
+            steps {
+              echo "NODE_NAME = ${env.NODE_NAME}"
+              print "NODE_NAME = ${env.NODE_NAME}"
+            }
+  }
+              
   stage("Init"){
     node (dbmJenkinsNode) {
       checkout scm
