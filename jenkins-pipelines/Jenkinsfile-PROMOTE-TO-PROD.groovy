@@ -40,7 +40,7 @@ try{
     stage("Update Jira Issue"){
         withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
             jiraIssueTransitionTo(issueKey, myvars.prodUpgTransitionId)
-            jiraIssueAddLabel(issueKey, myvars.prodUpgOkLabel)
+           // jiraIssueAddLabel(issueKey, myvars.prodUpgOkLabel)
         }
     }
   }
@@ -48,7 +48,7 @@ try{
 catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
-        jiraIssueAddLabel(issueKey, myvars.prodUpgErrorLabel)
+       // jiraIssueAddLabel(issueKey, myvars.prodUpgErrorLabel)
     }
   }
   throw e
@@ -57,7 +57,7 @@ finally{
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
         def comment = [ body: "${BUILD_URL}console" ]
-        jiraIssueAddComment(issueKey, comment)
+      //  jiraIssueAddComment(issueKey, comment)
     }
   }
 }
