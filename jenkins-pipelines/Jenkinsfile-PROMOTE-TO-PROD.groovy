@@ -41,6 +41,7 @@ try{
         withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
             jiraIssueTransitionTo(issueKey, myvars.prodUpgTransitionId)
            // jiraIssueAddLabel(issueKey, myvars.prodUpgOkLabel)
+          echo "Test"
         }
     }
   }
@@ -49,6 +50,7 @@ catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
        // jiraIssueAddLabel(issueKey, myvars.prodUpgErrorLabel)
+      echo "Test"
     }
   }
   throw e
