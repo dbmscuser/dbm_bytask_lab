@@ -40,6 +40,7 @@ try {
     stage("Update Jira Issue"){
         withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
            // jiraIssueAddLabel(issueKey, myvars.prodRbOkLabel)
+           echo "Test"
         }
     }
   }
@@ -49,6 +50,7 @@ catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
         //jiraIssueAddLabel(issueKey, myvars.prodRbErrorLabel)
+        echo "Test"
     }  
   }
   throw e
