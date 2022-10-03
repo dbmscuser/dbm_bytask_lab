@@ -39,7 +39,7 @@ try{
   if(feedbackToJira){
     stage("Update Jira Issue"){
         withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
-            jiraIssueTransitionTo(issueKey, myvars.prodUpgTransitionId)
+           // jiraIssueTransitionTo(issueKey, myvars.prodUpgTransitionId)
            // jiraIssueAddLabel(issueKey, myvars.prodUpgOkLabel)
           echo "Test"
         }
