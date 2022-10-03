@@ -71,7 +71,7 @@ try{
     stage("Update Jira Issue"){
         withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
             jiraIssueTransitionTo(issueKey, myvars.qaUpgTransitionId)
-            jiraIssueAddLabel(issueKey, myvars.qaUpgOkLabel)
+           // jiraIssueAddLabel(issueKey, myvars.qaUpgOkLabel)
         }
     }
   }
@@ -80,7 +80,7 @@ try{
 catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
-        jiraIssueAddLabel(issueKey, myvars.qaUpgErrorLabel)
+        //jiraIssueAddLabel(issueKey, myvars.qaUpgErrorLabel)
     }
   }
   throw e
