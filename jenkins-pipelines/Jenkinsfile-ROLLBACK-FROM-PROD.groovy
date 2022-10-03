@@ -39,7 +39,7 @@ try {
   if(feedbackToJira){
     stage("Update Jira Issue"){
         withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
-            jiraIssueAddLabel(issueKey, myvars.prodRbOkLabel)
+           // jiraIssueAddLabel(issueKey, myvars.prodRbOkLabel)
         }
     }
   }
@@ -48,7 +48,7 @@ try {
 catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
-        jiraIssueAddLabel(issueKey, myvars.prodRbErrorLabel)
+        //jiraIssueAddLabel(issueKey, myvars.prodRbErrorLabel)
     }  
   }
   throw e
