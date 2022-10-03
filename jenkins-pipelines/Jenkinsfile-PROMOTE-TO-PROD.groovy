@@ -59,7 +59,7 @@ finally{
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
         def comment = [ body: "${BUILD_URL}console" ]
-      //  jiraIssueAddComment(issueKey, comment)
+        jiraIssueAddComment(issueKey, comment)
     }
   }
 }
