@@ -16,6 +16,10 @@ def packageType = "Regular" //You can create Regular and Ad-hoc packages. We’l
 @Field
 def useSSL = "n" //use SSL to communicate with DBmaestro?
 @Field
+def userName = "poc@dbmaestro.com"
+@Field
+def token = "7KI5tL3ywYAZLB8FUY9fzJyekemgtG45"
+@Field
 def createScriptsOnly = "False" //If you want to create a rollback package and see its scripts before executing it, you can set this as True, we'll use False
 @Field
 def getPackagesFilePath = "GetPackagesOutput.json"
