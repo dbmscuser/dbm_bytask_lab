@@ -31,7 +31,7 @@ try{
       cleanWs()
       helpMsgbox("Build Package")
       //dbmBuild(myvars.javaCmd, myvars.projectName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
-      bat "${myvars.javaCmd} -Build -ProjectName ${myvars.projectName}  -EnvName Dev_Env_1 -VersionType Tasks -AdditionalInformation ${env.TICKET} -CreatePackage True  -PackageName ${env.TICKET} -CreateDowngradeScripts True  -Server ${myvars.server} -AuthType ${myvars.authType} -UseSSL ${myvars.useSSL}  -UserName ${myvars.userName} -Password ${myvars.token}"
+      bat "${myvars.javaCmd} -Build -ProjectName ${myvars.projectName}  -EnvName Dev_Env_1 -VersionType Tasks -AdditionalInformation ${env.TICKET} -CreatePackage True  -PackageName ${env.TICKET} -CreateDowngradeScripts True  -Server ${myvars.server} -AuthType ${myvars.authType}  -UserName ${myvars.userName} -Password ${myvars.token}"
     }
   }  
   stage("Build") {
