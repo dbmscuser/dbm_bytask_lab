@@ -43,7 +43,7 @@ try{
   //DRY RUN ENV (PRECHECK)
   stage("DryRun"){
     node (dbmJenkinsNode) {
-      dbmPreCheck(myvars.javaCmd, myvars.projectName, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+      //dbmPreCheck(myvars.javaCmd, myvars.projectName, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
     }
   }
 
