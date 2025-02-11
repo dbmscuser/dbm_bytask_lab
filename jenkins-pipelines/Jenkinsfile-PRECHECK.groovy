@@ -30,7 +30,7 @@ try{
     node (dbmJenkinsNode) {
       cleanWs()
       helpMsgbox("Build Package")
-      dbmBuild(myvars.javaCmd, myvars.projectName, myvars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+      dbmPreCheck(myvars.javaCmd, myvars.projectName, myvars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
     }
   }  
   stage("Build") {
