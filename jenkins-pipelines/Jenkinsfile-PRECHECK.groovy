@@ -31,8 +31,14 @@ try{
       cleanWs()
       //checkout whole repo if needed, to be able to see package folders
         helpMsgbox("Build Package")
-        dbmBuild(myvars.javaCmd, myvars.projectName, myVars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+        dbmBuild(myvars.javaCmd, myvars.projectName, myvars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
       }
+  }
+  
+  stage("Build") {
+    node (dbmJenkinsNode) {
+      echo "Building the project..."
+      // Add your build steps here
     }
   }
 
@@ -51,8 +57,8 @@ try{
         }
     }
   }
-
 }
+
 catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
