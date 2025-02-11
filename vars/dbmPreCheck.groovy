@@ -1,6 +1,7 @@
-def call(String javaCmd, String projectName, String envName, String taskName, String server, String authType, String useSSL, String dbmCredentials){
-  helpMsgbox("BUilding Package ${filePath}")
-  withCredentials([usernamePassword(credentialsId: dbmCredentials, usernameVariable: 'username', passwordVariable: 'token')]){
-    bat "${javaCmd} -Build -ProjectName ${projectName}  -EnvName ${envName} -VersionType Tasks -AdditionalInformation ${taskName} -CreatePackage True  -PackageName ${taskName} -CreateDowngradeScripts True  -Server ${server} -AuthType ${authType} -UseSSL ${useSSL}" + ' -UserName %username% -Password %token%'
-  }
+def call(String javaCmd, String projectName, String packageName, String server, String authType, String useSSL, String dbmCredentials)
+{
+    helpMsgbox("Performing PreCheck on Package ${packageName}")
+    withCredentials([usernamePassword(credentialsId: dbmCredentials, usernameVariable: 'username', passwordVariable: 'token')]){
+        bat "${javaCmd} -PreCheck -ProjectName ${projectName} -PackageName ${packageName} -Server ${server} -AuthType ${authType} -UseSSL ${useSSL}" + ' -UserName %username% -Password %token%'
+    }
 }
