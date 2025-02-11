@@ -32,10 +32,10 @@ try{
       helpMsgbox("Build Package")
       //dbmBuild(myvars.javaCmd, myvars.projectName, myvars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
       withCredentials([usernamePassword(credentialsId: dbmCredentials, usernameVariable: 'username', passwordVariable: 'token')]){
-      bat "${javaCmd} -Build -ProjectName ${projectName}  -EnvName ${envName} -VersionType Tasks -AdditionalInformation ${taskName} -CreatePackage True  -PackageName ${taskName} -CreateDowngradeScripts True  -Server ${server} -AuthType ${authType} -UseSSL ${useSSL}" + ' -UserName %username% -Password %token%'
+        bat "${javaCmd} -Build -ProjectName ${projectName}  -EnvName ${envName} -VersionType Tasks -AdditionalInformation ${taskName} -CreatePackage True  -PackageName ${taskName} -CreateDowngradeScripts True  -Server ${server} -AuthType ${authType} -UseSSL ${useSSL}" + ' -UserName %username% -Password %token%'
+      }
     }
-  }
-  
+  }  
   stage("Build") {
     node (dbmJenkinsNode) {
       echo "Building the project..."
