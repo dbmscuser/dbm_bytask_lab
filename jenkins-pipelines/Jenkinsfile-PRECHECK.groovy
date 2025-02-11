@@ -30,10 +30,7 @@ try{
     node (dbmJenkinsNode) {
       cleanWs()
       helpMsgbox("Build Package")
-      //dbmBuild(myvars.javaCmd, myvars.projectName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
-      withCredentials([usernamePassword(credentialsId: dbmCredentials, usernameVariable: 'username', passwordVariable: 'token')]){
-        bat "${javaCmd} -Build -ProjectName ${projectName}  -EnvName Dev_Env_1 -VersionType Tasks -AdditionalInformation ${taskName} -CreatePackage True  -PackageName ${taskName} -CreateDowngradeScripts True  -Server ${server} -AuthType ${authType} -UseSSL ${useSSL}" + ' -UserName %username% -Password %token%'
-      }
+      dbmBuild(myvars.javaCmd, myvars.projectName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
     }
   }  
   stage("Build") {
@@ -69,6 +66,7 @@ catch(e){
   }
   throw e
 }
+
 finally{
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
