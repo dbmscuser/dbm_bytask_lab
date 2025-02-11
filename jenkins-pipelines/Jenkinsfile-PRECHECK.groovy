@@ -28,8 +28,7 @@ try{
 
   stage("Packaging") {
     node (dbmJenkinsNode) {
-      cleanWs()
-      //checkout whole repo if needed, to be able to see package folders
+        cleanWs()
         helpMsgbox("Build Package")
         dbmBuild(myvars.javaCmd, myvars.projectName, myvars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
       }
@@ -45,7 +44,11 @@ try{
   //DRY RUN ENV (PRECHECK)
   stage("DryRun"){
     node (dbmJenkinsNode) {
-      dbmPreCheck(myvars.javaCmd, myvars.projectName, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+      //dbmPreCheck(myvars.javaCmd, myvars.projectName, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+      helpMsgbox("BUilding Package ${filePath}")
+      withCredentials([usernamePassword(credentialsId: dbmCredentials, usernameVariable: 'username', passwordVariable: 'token')]){
+      bat "${javaCmd} -Build -ProjectName ${projectName}  -EnvName ${envName} -VersionType Tasks -AdditionalInformation ${taskName} -CreatePackage True  -PackageName ${taskName} -CreateDowngradeScripts True  -Server ${server} -AuthType ${authType} -UseSSL ${useSSL}" + ' -UserName %username% -Password %token%'
+  }
     }
   }
 
