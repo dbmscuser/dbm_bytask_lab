@@ -4,7 +4,7 @@ import groovy.transform.Field
 @Field
 def projectName = "JenkinsSCMsSql" //“DBmaestro DOP” Project Name. Default Value for this Lab: MsSqlByTask
 @Field
-def server = "localhost:8020" //IP/Hostname and Port of “DBmaestro DOP“ Agent to connect to. In this case we’ll connect to the default one installed in the “DBmaestro DOP” Server. Default port is 8017. Value example: 10.0.1.111:8017
+def server = "DOPX-BERKE:8020" //IP/Hostname and Port of “DBmaestro DOP“ Agent to connect to. In this case we’ll connect to the default one installed in the “DBmaestro DOP” Server. Default port is 8017. Value example: 10.0.1.111:8017
 @Field
 def dbmCredentials = "dbmaestro-user-automation-token" //Jenkins Credentials ID for “DBmaestro DOP” User to authenticate with. Default value for this Lab: dbmaestro-user-automation-token
 @Field
@@ -26,6 +26,8 @@ def rsEnvName = "RS" //name of Release Source Environment in your DBmaestro Proj
 def qaEnvName = "QA" //name of QA Environment in your DBmaestro Project
 @Field
 def prodEnvName = "PROD" //name of Production Environment in your DBmaestro Project
+@Field
+def devEnvName = "Dev" //name of Production Environment in your DBmaestro Project
 
 //Git
 @Field

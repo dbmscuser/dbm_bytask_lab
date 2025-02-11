@@ -30,18 +30,8 @@ try{
     node (dbmJenkinsNode) {
       cleanWs()
       //checkout whole repo if needed, to be able to see package folders
-      checkout scm
-      dbmGetPackages(myvars.javaCmd, myvars.projectName, myvars.getPackagesFilePath, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
-      packageExists = dbmPackageExists(packageFolder, myvars.getPackagesFilePath)
-      helpMsgbox("Package exists?: '${packageExists}'")
-      if(packageExists){
-        helpMsgbox("Don't create package in DBmaestro, it already exists")
-      }
-      else{
-        helpMsgbox("Upload to DBmaestro")
-        dbmCreateManifestFile(myvars.javaCmd, myvars.rootFolder, packageFolder, myvars.packageType)
-        helpZipPackageFolder(myvars.rootFolder, packageFolder)
-        dbmPackage(myvars.javaCmd, myvars.projectName, myvars.rootFolder, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+        helpMsgbox("Build Package")
+        dbmBuild(myvars.javaCmd, myvars.projectName, myVars.devEnvName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
       }
     }
   }
