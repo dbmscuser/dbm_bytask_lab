@@ -29,15 +29,20 @@ try{
   stage("Packaging") {
     node (dbmJenkinsNode) {
       cleanWs()
-      helpMsgbox("Build Package")
-      //dbmBuild(myvars.javaCmd, myvars.projectName, env.TICKET, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
-      bat "${myvars.javaCmd} -Build -ProjectName ${myvars.projectName}  -EnvName Dev_Env_1 -VersionType Tasks -AdditionalInformation ${env.TICKET} -CreatePackage True  -PackageName ${env.TICKET} -CreateDowngradeScripts True  -Server ${myvars.server} -AuthType ${myvars.authType}  -UserName ${myvars.userName} -Password ${myvars.token}"
-    }
-  }  
-  stage("Build") {
-    node (dbmJenkinsNode) {
-      echo "Building the project..."
-      // Add your build steps here
+      //checkout whole repo if needed, to be able to see package folders
+      checkout scm
+      dbmGetPackages(myvars.javaCmd, myvars.projectName, myvars.getPackagesFilePath, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+      packageExists = dbmPackageExists(packageFolder, myvars.getPackagesFilePath)
+      helpMsgbox("Package exists?: '${packageExists}'")
+      if(packageExists){
+        helpMsgbox("Don't create package in DBmaestro, it already exists")
+      }
+      else{
+        helpMsgbox("Upload to DBmaestro")
+        dbmCreateManifestFile(myvars.javaCmd, myvars.rootFolder, packageFolder, myvars.packageType)
+        helpZipPackageFolder(myvars.rootFolder, packageFolder)
+        dbmPackage(myvars.javaCmd, myvars.projectName, myvars.rootFolder, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
+      }
     }
   }
 
@@ -56,8 +61,8 @@ try{
         }
     }
   }
-}
 
+}
 catch(e){
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
@@ -67,7 +72,6 @@ catch(e){
   }
   throw e
 }
-
 finally{
   if(feedbackToJira){
     withEnv(["JIRA_SITE=${myvars.jiraSite}"]) {
