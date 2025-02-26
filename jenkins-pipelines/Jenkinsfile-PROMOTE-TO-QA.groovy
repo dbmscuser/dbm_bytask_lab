@@ -9,7 +9,6 @@ try{
 
   stage("Init"){
     node(dbmJenkinsNode){
-      checkout scm
       //rootDir = pwd()
       myvars = load varsPath
       //if ticket number comes from a Jenkins parameter
@@ -23,33 +22,6 @@ try{
         feedbackToJira = true
       }
       packageFolder = issueKey
-    }
-  }
-
-  stage("Packaging") {
-    node (dbmJenkinsNode) {
-      cleanWs()
-      //checkout whole repo if needed, to be able to see package folders
-      checkout scm
-      dbmGetPackages(myvars.javaCmd, myvars.projectName, myvars.getPackagesFilePath, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
-      packageExists = dbmPackageExists(packageFolder, myvars.getPackagesFilePath)
-      helpMsgbox("Package exists?: '${packageExists}'")
-      if(packageExists){
-        helpMsgbox("Don't create package in DBmaestro, it already exists")
-      }
-      else{
-        helpMsgbox("Upload to DBmaestro")
-        dbmCreateManifestFile(myvars.javaCmd, myvars.rootFolder, packageFolder, myvars.packageType)
-        helpZipPackageFolder(myvars.rootFolder, packageFolder)
-        dbmPackage(myvars.javaCmd, myvars.projectName, myvars.rootFolder, packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
-      }
-    }
-  }
-
-  //DRY RUN ENV (PRECHECK)
-  stage("PreCheck"){
-    node (dbmJenkinsNode) {
-      dbmPreCheck(myvars.javaCmd, myvars.projectName, myvars.packageFolder, myvars.server, myvars.authType, myvars.useSSL, myvars.dbmCredentials)
     }
   }
 
