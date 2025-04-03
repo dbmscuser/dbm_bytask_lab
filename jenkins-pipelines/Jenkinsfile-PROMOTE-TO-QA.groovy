@@ -11,6 +11,7 @@ try{
   stage("Init"){
     node(dbmJenkinsNode){
       //rootDir = pwd()
+      checkout scm 
       myvars = load varsPath
       //if ticket number comes from a Jenkins parameter
       if(env.TICKET){
