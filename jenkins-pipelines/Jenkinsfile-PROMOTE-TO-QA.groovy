@@ -3,6 +3,7 @@
 /**********   LOCAL VARIABLES BEGIN   **********/
 def varsPath = "jenkins-pipelines/vars.groovy"
 def dbmJenkinsNode = "master"
+def feedbackToJira = false
 /**********    LOCAL VARIABLES END    **********/
 
 try{
