@@ -31,7 +31,7 @@ def qaEnvName = "QA" //name of QA Environment in your DBmaestro Project
 @Field
 def prodEnvName = "PROD" //name of Production Environment in your DBmaestro Project
 @Field
-def devEnvName = "DEV" //name of Production Environment in your DBmaestro Project
+def devEnvName = "Dev_Env_1" //name of DEV in your DBmaestro Project
 
 //Git
 @Field
